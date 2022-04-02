@@ -21,7 +21,7 @@ public class PersonaController {
         return repositorio.findAll();
     }
 
-    //saved persona
+    //save persona
     @PostMapping("/personas")
     public Persona savedPersona(@RequestBody Persona persona){
         return repositorio.save(persona);

@@ -5,5 +5,5 @@ export class Paciente {
 	telefono_persona:string;
 	correo_persona:string;
 	direccion_persona:string;
-	rol_persona:number;
+	rol_persona:number=3;
 }

@@ -7,15 +7,20 @@ import { Paciente } from './paciente';
   providedIn: 'root'
 })
 export class PacienteService {
-  
+
   //URL all pacientes
   private pacienteURL = "http://localhost:8080/api/v1/personas";
-  
+
   constructor(private httpCliente : HttpClient) { }
 
   //get pacientes
   getListPacientes():Observable<Paciente[]>{
     return this.httpCliente.get<Paciente[]>(`${this.pacienteURL}`);
+  }
+
+  //create paciente
+  registerPaciente(paciente:Paciente):Observable<Object>{
+    return this.httpCliente.post(`${this.pacienteURL}`,paciente);
   }
 
 }

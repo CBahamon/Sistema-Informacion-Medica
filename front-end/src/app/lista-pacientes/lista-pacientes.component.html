@@ -1,7 +1,10 @@
-<h2>Lista Pacientes</h2>
+<div class="d-flex justify-content-between">
+	<h2 class="">Lista Pacientes</h2>
+	<button class="btn btn-info" (click)="crearPaciente()">Crear Paciente</button>
+</div>
 <table class="table table-striped">
-	<thead class="table-dark">
-		<tr>
+	<thead class="table-primary">
+		<tr >
 			<th>Documento</th>
 			<th>Nombre</th>
 			<th>Apellidos</th>
@@ -20,7 +23,7 @@
 					<td>{{paciente.telefono_persona}}</td>
 					<td>{{paciente.correo_persona}}</td>
 					<td>{{paciente.direccion_persona}}</td>
-	
+
 					<!-- <td *ngSwitchCase="1">Administrador</td>
 					<td *ngSwitchCase="2">Medico</td> -->
 					<td *ngSwitchCase="3">Paciente</td>
