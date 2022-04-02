@@ -101,4 +101,5 @@ public class Persona {
     public void setRol_persona(int rol_persona) {
         this.rol_persona = rol_persona;
     }
+
 }
