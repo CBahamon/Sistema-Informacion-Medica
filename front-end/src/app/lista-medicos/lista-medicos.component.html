@@ -1,0 +1,33 @@
+<h2>Lista Medicos</h2>
+<table class="table table-striped">
+	<thead class="table-dark">
+		<tr>
+			<th>Documento</th>
+			<th>Nombre</th>
+			<th>Apellidos</th>
+			<th>Telefono</th>
+			<th>Correo</th>
+			<th>Direccion</th>
+			<th>Rol</th>
+			<th>Accion</th>
+		</tr>
+	</thead>
+	<tbody *ngFor="let medico of medicos">
+			<tr [ngSwitch]="medico.rol_persona"  *ngIf="medico.rol_persona === 2">
+					<td>{{medico.id_persona}}</td>
+					<td>{{medico.nombre_persona}}</td>
+					<td>{{medico.apellido_persona}}</td>
+					<td>{{medico.telefono_persona}}</td>
+					<td>{{medico.correo_persona}}</td>
+					<td>{{medico.direccion_persona}}</td>
+	
+					<!-- <td *ngSwitchCase="1">Administrador</td> -->
+					<td *ngSwitchCase="2">Medico</td>
+					<!-- <td *ngSwitchCase="3">Paciente</td> -->
+					<td>
+						<button class="btn btn-success mr-2">Editar</button>
+						<button class="btn btn-danger">Borrar</button>
+					</td>
+			</tr>
+	</tbody>
+</table>
