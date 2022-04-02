@@ -2,20 +2,32 @@
 <table class="table table-striped">
 	<thead class="table-dark">
 		<tr>
+			<th>Documento</th>
 			<th>Nombre</th>
 			<th>Apellidos</th>
 			<th>Telefono</th>
 			<th>Correo</th>
 			<th>Direccion</th>
+			<th>Rol</th>
+			<th>Accion</th>
 		</tr>
 	</thead>
-	<tbody >
-		<tr *ngFor="let paciente of pacientes">
-			<td>{{paciente.nombre}}</td>
-			<td>{{paciente.apellido}}</td>
-			<td>{{paciente.telefono}}</td>
-			<td>{{paciente.correo}}</td>
-			<td>{{paciente.direccion}}</td>
-		</tr>
+	<tbody *ngFor="let paciente of pacientes">
+			<tr [ngSwitch]="paciente.rol_persona"  *ngIf="paciente.rol_persona === 3">
+					<td>{{paciente.id_persona}}</td>
+					<td>{{paciente.nombre_persona}}</td>
+					<td>{{paciente.apellido_persona}}</td>
+					<td>{{paciente.telefono_persona}}</td>
+					<td>{{paciente.correo_persona}}</td>
+					<td>{{paciente.direccion_persona}}</td>
+	
+					<!-- <td *ngSwitchCase="1">Administrador</td>
+					<td *ngSwitchCase="2">Medico</td> -->
+					<td *ngSwitchCase="3">Paciente</td>
+					<td>
+						<button class="btn btn-success mr-2">Editar</button>
+						<button class="btn btn-danger">Borrar</button>
+					</td>
+			</tr>
 	</tbody>
 </table>

@@ -9,13 +9,13 @@ import { Paciente } from './paciente';
 export class PacienteService {
   
   //URL all pacientes
-  private baseURL = "http://localhost:8080/api/v1/pacientes";
+  private pacienteURL = "http://localhost:8080/api/v1/personas";
   
   constructor(private httpCliente : HttpClient) { }
 
   //get pacientes
   getListPacientes():Observable<Paciente[]>{
-    return this.httpCliente.get<Paciente[]>(`${this.baseURL}`);
+    return this.httpCliente.get<Paciente[]>(`${this.pacienteURL}`);
   }
 
 }
