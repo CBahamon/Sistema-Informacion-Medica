@@ -37,6 +37,24 @@ public class PersonaController {
         return ResponseEntity.ok(persona);
     }
 
+    @PutMapping("/personas/${id}")
+    public ResponseEntity<Persona> updatePersona(@PathVariable Long id, @RequestBody Persona detailPersona){
+        Persona persona = repositorio.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No existe la persona con el documento : " + id));
+
+        persona.setId_persona(detailPersona.getId_persona());
+        persona.setNombre_persona(detailPersona.getNombre_persona());
+        persona.setApellido_persona(detailPersona.getApellido_persona());
+        persona.setTelefono_persona(detailPersona.getTelefono_persona());
+        persona.setCorreo_persona(detailPersona.getCorreo_persona());
+        persona.setDireccion_persona(detailPersona.getDireccion_persona());
+        persona.setRol_persona(detailPersona.getRol_persona());
+
+        Persona personaUpdate = repositorio.save(persona);
+        return ResponseEntity.ok(personaUpdate);
+    }
+
+
 //    @GetMapping("/pacientes")
 //    public List<Persona> listAllPacientes(@RequestParam int rol){
 //        try {
