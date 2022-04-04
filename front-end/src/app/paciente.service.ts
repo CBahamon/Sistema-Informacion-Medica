@@ -23,4 +23,18 @@ export class PacienteService {
     return this.httpCliente.post(`${this.pacienteURL}`,paciente);
   }
 
+  //get paciente by id
+  getPacienteById(id:number):Observable<Paciente>{
+    return this.httpCliente.get<Paciente>(`${this.pacienteURL}/${id}`);
+  }
+
+  //update paciente by id
+  updatePaciente(id:number,paciente:Paciente):Observable<Object>{
+    return this.httpCliente.put(`${this.pacienteURL}/${id}`, paciente);
+  }
+
+  //delete paciente
+  deletePaciente(id:number):Observable<Object>{
+    return this.httpCliente.delete(`${this.pacienteURL}/${id}`);
+  }
 }
