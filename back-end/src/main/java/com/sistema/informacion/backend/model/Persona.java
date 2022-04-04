@@ -4,11 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "persona")
+
 public class Persona {
 
-//    @Id
-//    @
-//    GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
     @Column(name ="id_persona", length = 40,nullable = false)
     private Long id_persona;
@@ -31,11 +30,14 @@ public class Persona {
     @Column(name = "rol_persona", length = 40 ,nullable = false)
     private int rol_persona;
 
+    @Column(name = "password_persona", length = 45 ,nullable = false)
+    private String password_persona;
+
     private Persona(){
 
     }
 
-    public Persona(Long id_persona, String nombre_persona, String apellido_persona, String telefono_persona, String correo_persona, String direccion_persona, int rol_persona) {
+    public Persona(Long id_persona, String nombre_persona, String apellido_persona, String telefono_persona, String correo_persona, String direccion_persona, int rol_persona, String password_persona) {
         super();
         this.id_persona = id_persona;
         this.nombre_persona = nombre_persona;
@@ -44,6 +46,7 @@ public class Persona {
         this.correo_persona = correo_persona;
         this.direccion_persona = direccion_persona;
         this.rol_persona = rol_persona;
+        this.password_persona = password_persona;
     }
 
     public Long getId_persona() {
@@ -102,4 +105,11 @@ public class Persona {
         this.rol_persona = rol_persona;
     }
 
+    public String getPassword_persona() {
+        return password_persona;
+    }
+
+    public void setPassword_persona(String password_persona) {
+        this.password_persona = password_persona;
+    }
 }

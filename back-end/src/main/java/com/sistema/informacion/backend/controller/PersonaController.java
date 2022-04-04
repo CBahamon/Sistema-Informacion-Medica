@@ -7,15 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.PUT,RequestMethod.POST})
 public class PersonaController {
 
     @Autowired
     private PersonaRepository repositorio;
+//    private LoginRepository repo;
 
     //get all personas
     @GetMapping("/personas")
@@ -37,8 +41,9 @@ public class PersonaController {
         return ResponseEntity.ok(persona);
     }
 
-    @PutMapping("/empleados/{id}")
-    public ResponseEntity<Persona> actualizarEmpleado(@PathVariable Long id,@RequestBody Persona detailPersona){
+    //update persona
+    @PutMapping("/personas/{id}")
+    public ResponseEntity<Persona> updatePersona(@PathVariable Long id,@RequestBody Persona detailPersona){
         Persona persona = repositorio.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No existe el empleado con el ID : " + id));
 
@@ -54,15 +59,34 @@ public class PersonaController {
         return ResponseEntity.ok(personaUpdate);
     }
 
+    //delete persona
+    @DeleteMapping("/pacientes/{id}")
+    public ResponseEntity<Map<String,Boolean>> deletePersona(@PathVariable Long id){
+        Persona persona = repositorio.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No existe la persona con el ID : " + id));
 
-//    @GetMapping("/pacientes")
-//    public List<Persona> listAllPacientes(@RequestParam int rol){
-//        try {
-//            return repositorio .
-//        }catch (Exception e){
-//
-//        }
-//        return repositorio.findByRol_persona(2L);
+        repositorio.delete(persona);
+        Map<String, Boolean> respuesta = new HashMap<>();
+        respuesta.put("eliminar",Boolean.TRUE);
+        return ResponseEntity.ok(respuesta);
+    }
+
+//    @PostMapping("/login")
+//    public ResponseEntity<?> loginPersona(@RequestBody Persona personaData) {
+//        Persona persona = repositorio.findByUserId(personaData.getId_persona());
+//        if (persona.getPassword_persona().equals(personaData.getPassword_persona()))
+//            return ResponseEntity.ok(persona);
+//        return (ResponseEntity<?>) ResponseEntity.internalServerError();
 //    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> loginPersona(@RequestBody Persona personaData){
+        Persona persona = repositorio.findById(personaData.getId_persona())
+                .orElseThrow(() -> new ResourceNotFoundException("No existe la persona con el documento : " + personaData.getId_persona()));
+
+        if (persona.getPassword_persona().equals(personaData.getPassword_persona()))
+            return ResponseEntity.ok(persona);
+        return ResponseEntity.ok(persona);
+    }
 
 }
