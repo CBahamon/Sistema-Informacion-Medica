@@ -28,4 +28,19 @@ export class ListaPacientesComponent implements OnInit {
     this.router.navigate(['registrar-paciente'])
   }
 
+  updatePaciente(id:number){
+    this.router.navigate(['actualizar-paciente',id])
+  }
+
+  deletePaciente(id:number){
+    this.pacienteServicio.deletePaciente(id).subscribe(dato =>{
+      console.log(dato);
+      this.getPacientes();
+    })
+  }
+
+  detailPaciente(id:number){
+    this.router.navigate(['detalle-paciente',id])
+  }
+
 }
